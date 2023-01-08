@@ -16,9 +16,7 @@ node {
             }
         }
         
-    withDockerContainer('cdrx/pyinstaller-linux:python2'){
         stage('Deliver') {
             echo '=========[stage Deployment]==========='
         }
-    }
 }
