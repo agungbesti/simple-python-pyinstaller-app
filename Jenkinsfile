@@ -20,8 +20,10 @@ node {
         stage('Deliver') {
             echo '=========[stage Deployment]==========='
             checkout scm
+            sh 'docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-agungbesti/sources:/src cdrx/pyinstaller-linux:python2 \'pyinstaller -F add2vals.py\''
             sh 'pyinstaller --onefile sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
+            sh 'docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-agungbesti/sources:/src cdrx/pyinstaller-linux:python2 \'rm -rf build dist\''
         }
     }
 }
